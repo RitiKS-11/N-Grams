@@ -1,0 +1,7 @@
+N_grams.egg-info
+build
+dist
+venv
+__pycache__
+.pytest_cache
+todo.txt
