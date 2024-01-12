@@ -1,4 +1,4 @@
-import os, csv
+import csv
 
 
 STOPWORDS = ["a", "about", "above", "after", "again", "against", "all", "am", 
@@ -97,12 +97,12 @@ def clean_data(data):
         news = ' '.join(clean_words)
         row['news'] = news
     
-    print(data)
     return data
 
     
 def generate_n_grams(news, ngram):
-    pass
+    words = news.split()
+    result = [' '.join(words[i:i+ngram]) for i in range(len(words)-ngram+1)]
+    return result
         
-
 

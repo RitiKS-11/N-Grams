@@ -1,6 +1,6 @@
 import pytest 
 
-from pkg.main import train_and_test_split, get_testing_data, get_training_data, clean_data, remove_punctuation, remove_stopwords
+from pkg.main import train_and_test_split, get_testing_data, get_training_data, clean_data, remove_punctuation, remove_stopwords, generate_n_grams
 
 @pytest.fixture
 def test_filepath():
@@ -50,6 +50,18 @@ def test_remove_punctuation(punctuation_string, expected_reulst):
 ])
 def test_remove_stopwords(stopword_string, expected_reulst):
     assert remove_stopwords(stopword_string) == expected_reulst
+
+@pytest.mark.parametrize('news, ngram, expected_result',[(
+        'According  Gran   company   plans  move  production  Russia  although    \
+        company  growing ', 
+        2, 
+        ['According Gran', 'Gran company', 'company plans', 'plans move', \
+        'move production', 'production Russia', 'Russia although', \
+        'although company', 'company growing'] 
+)])
+def test_generate_n_grams(news, ngram, expected_result):
+
+    assert generate_n_grams(news, ngram) == expected_result
 
 
 
