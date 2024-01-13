@@ -1,17 +1,17 @@
 from collections import defaultdict
 
-from pkg.main import generate_n_grams, get_training_data, clean_data
+from pkg.main import generate_n_grams, get_training_data, clean_data, train_and_test_split
 
 def get_result(filepath):
     result = []
 
-    train_data = get_training_data(filepath, 1)
+    train_data, test_n = train_and_test_split(filepath)
     cleaned_data = clean_data(train_data)
 
     for data in cleaned_data:
         result.append(data)
     
-    res = get_trigrams(result)
+    res = get_unigrams(result)
     return res
 
 
